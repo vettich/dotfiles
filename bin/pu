@@ -1,0 +1,5 @@
+#!/bin/bash
+#
+# Pacman update command
+
+sudo pacman -Syu

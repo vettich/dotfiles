@@ -1,0 +1,200 @@
+{
+	"ipc": true,
+	"mode": "dock",
+	"hidden_state": "hide",
+	"position": "top",
+	"height": 28,
+	"modules-left": [
+		"sway/workspaces",
+		"sway/mode"
+	],
+	"modules-center": [
+		"clock",
+		"idle_inhibitor"
+	],
+	"modules-right": [
+		"tray",
+		"custom/scratchpad-indicator",
+		"pulseaudio",
+		"backlight",
+		"battery",
+		"temperature",
+		"custom/power"
+	],
+	"sway/mode": {
+		"format": "<span style=\"italic\">{}</span>"
+	},
+	"output": [
+		"HDMI-A-1",
+		"eDP-1"
+	],
+	"network": {
+		"format-wifi": "{essid} ({signalStrength}%) ",
+		"format-ethernet": "{ifname} ",
+		"format-disconnected": "",
+		"max-length": 30,
+		"on-click": "kitty -e 'nmtui'"
+	},
+	"idle_inhibitor": {
+		"format": "{icon}",
+		"format-icons": {
+			"activated": "",
+			"deactivated": ""
+		}
+	},
+	"tray": {
+		"icon-size": 16,
+		"spacing": 12
+	},
+	"clock": {
+		"tooltip-format": "<tt>{calendar}</tt>",
+		"format": "{:L%a %d %b, %H:%M:%OS}",
+		//"format": "{:%d %B, %H:%M:%OS} ",
+		//"locale": "ru",
+		//"timezone": "Asia/Yekaterinburg",
+		//"format-alt": "",
+		"interval": 1,
+		"on-click": "gnome-calendar",
+		"calendar": {
+			"mode": "month",
+			"mode-mon-col": 2,
+			"weeks-pos": "right",
+			"on-scroll": 1,
+			"on-click-right": "mode",
+			"format": {
+				"months": "<span color='#ffead3'><b>{}</b></span>",
+				"days": "<span color='#ecc6d9'><b>{}</b></span>",
+				"weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+				"weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+				"today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+			}
+		},
+		"actions": {
+			"on-click-right": "mode",
+			"on-scroll-up": "shift_up",
+			"on-scroll-down": "shift_down"
+		}
+	},
+	"custom/clock": {
+		"format": "{}",
+		"interval": 1,
+		"exec": "date +'%d %B, %H:%M:%S'"
+	},
+	// "cpu": {
+	//     "format": "{usage}% ",
+	//     "tooltip": false
+	// },
+	// "memory": {
+	//     "format": "{}% "
+	// },
+	"temperature": {
+		"hwmon-path": "/sys/class/hwmon/hwmon3/temp1_input",
+		"critical-threshold": 82,
+		"format-critical": "{temperatureC}°C {icon}",
+		"format": "{temperatureC}°C {icon}",
+		"format-icons": [
+			""
+		]
+	},
+	"battery": {
+		"states": {
+			//"good": 95,
+			"warning": 20,
+			"critical": 10
+		},
+		"format": "{capacity}% {icon}",
+		"format-charging": "{capacity}% ",
+		"format-plugged": "{capacity}% ",
+		"format-alt": "{time} {icon}",
+		"format-full": "",
+		"format-icons": [
+			"",
+			"",
+			"",
+			"",
+			""
+		]
+	},
+	"bluetooth": {
+		"format": " {status}",
+		"format-connected": " {device_alias}",
+		"format-connected-battery": " {device_alias} {device_battery_percentage}%",
+		// "format-device-preference": [ "device1", "device2" ], // preference list deciding the displayed device
+		"tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
+		"tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
+		"tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+		"tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%"
+	},
+	"pulseaudio": {
+		// "scroll-step": 1, // %, can be a float
+		"format": "{volume}% {icon} ",
+		"format-bluetooth": "{volume}% {icon} {format_source}",
+		"format-bluetooth-muted": " {icon} {format_source}",
+		"format-muted": "0% {icon} ",
+		"format-source": "{volume}% ",
+		"format-source-muted": "",
+		"format-icons": {
+			"headphone": "",
+			"hands-free": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": [
+				"",
+				"",
+				""
+			]
+		},
+		"on-click": "pavucontrol"
+	},
+	"backlight": {
+		"device": "intel_backlight",
+		"format": "{percent}% {icon}",
+		"format-icons": [
+			"",
+			""
+		]
+	},
+	"wlr/taskbar": {
+		"format": "{icon}",
+		"icon-size": 14,
+		"icon-theme": "Numix-Circle",
+		"tooltip-format": "{title}",
+		"on-click": "activate",
+		"on-click-middle": "close",
+		// "ignore-list": [
+		// 	"Alacritty"
+		// ],
+		"app_ids-mapping": {
+			"firefoxdeveloperedition": "firefox-developer-edition"
+		},
+		"rewrite": {
+			"Веб-браузер Firefox": "Firefox",
+			"Foot Server": "Terminal"
+		}
+	},
+	"custom/power": {
+		"format": "",
+		"on-click": "rofi -show p -modi p:rofi-power-menu"
+		// "on-click": "swaynag -t warning -m 'Power Menu Options' -b 'Logout' 'swaymsg exit' -b 'Restart' 'shutdown -r now' -b 'Shutdown'  'shutdown -h now' --background=#005566 --button-background=#009999 --button-border=#002b33 --border-bottom=#002b33"
+	},
+	// "custom/example_runscript_3 seconds": {
+	// 	"interval": 3,
+	// 	"exec": "/home/dg/.config/waybar/modules/menu_test.py",
+	// 	"format": "{}",
+	// },
+	// "custom/menu": {
+	// 	"format": "",
+	//  	"on-click": "/home/dg/.config/waybar/modules/menu_test.py",
+	// },
+	"custom/scratchpad-indicator": {
+		"format-text": "{}",
+		"return-type": "json",
+		"interval": 3,
+		"exec": "~/.local/bin/scratchpad-indicator 2> /dev/null",
+		"exec-if": "exit 0",
+		"on-click": "swaymsg 'scratchpad show'",
+		"on-click-right": "swaymsg 'move scratchpad'"
+	}
+}

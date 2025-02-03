@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# save first argument as container
+container=$1  
+
+# fetch container id
+id=$(docker inspect $container | jq -r '.[] | .Id')  
+
+# fetch ip from docker gateway bridge
+ip=$(docker inspect docker_gwbridge | jq -r ".[] | .Containers[\"$id\"].IPv4Address")
+
+# show ip without subnet
+echo ${ip%/16}
