@@ -17,6 +17,17 @@ return {
           ["z"] = "noop",
         },
       },
+      event_handlers = {
+        {
+          event = "neo_tree_buffer_enter",
+          handler = function(arg)
+            -- set relative line numbers in file explorer
+            vim.cmd([[
+              setlocal relativenumber
+            ]])
+          end,
+        },
+      },
     },
   },
 }

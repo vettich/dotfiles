@@ -16,7 +16,8 @@ return {
         desc = "Rename (inc-rename.nvim)",
         has = "rename",
       }
-      keys[#keys + 1] = { "<F4>", vim.lsp.buf.code_action, desc = "Code action", has = "code_action" }
+      keys[#keys + 1] =
+        { "<F4>", vim.lsp.buf.code_action, desc = "Code action", has = "code_action" }
     end,
   },
   {
@@ -45,7 +46,26 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        go = { "goimports-reviser", "golines" },
+        go = { "goimports-reviser" },
+      },
+    },
+  },
+  {
+    "mrcjkb/rustaceanvim",
+    version = "^5", -- Recommended
+    lazy = false, -- This plugin is already lazy
+    opts = {
+      server = {
+        default_settings = {
+          ["rust-analyzer"] = {
+            procMacro = {
+              enable = true,
+            },
+            diagnostics = {
+              disabled = { "unresolved-proc-macro", "proc-macro-disabled" },
+            },
+          },
+        },
       },
     },
   },
