@@ -69,4 +69,7 @@ return {
       },
     },
   },
+  {
+    "jparise/vim-graphql",
+  },
 }
